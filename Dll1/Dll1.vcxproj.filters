@@ -81,6 +81,12 @@
     <ClInclude Include="DirectXHook\pstdint.h">
       <Filter>DirectXHook\hook</Filter>
     </ClInclude>
+    <ClInclude Include="OwnImGui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -124,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="DirectXHook\trampoline.c">
       <Filter>DirectXHook\hook</Filter>
+    </ClCompile>
+    <ClCompile Include="OwnImGui.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

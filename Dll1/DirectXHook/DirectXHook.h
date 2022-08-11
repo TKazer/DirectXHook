@@ -8,6 +8,15 @@
 #pragma comment(lib,"dxgi.lib")
 #include "./MinHook.h"
 
+/****************************************************
+* Copyright (C): Liv
+* @file		: DirectXHook.h
+* @author	: Liv
+* @email		: 1319923129@qq.com
+* @version	: 1.0
+* @date		: 2022/6/4	20:04
+****************************************************/
+
 #if _WIN64
 typedef DWORD64 Address;
 #else
@@ -31,7 +40,8 @@ enum DXTYPE
 {
 	NONE,
 	D3D9,
-	D3D11
+	D3D11,
+	AUTO
 };
 
 class DirectXHook : public Single<DirectXHook>

@@ -1,8 +1,17 @@
 #include "DirectXHook.h"
 
+/****************************************************
+* Copyright (C): Liv
+* @file		: DirectXHook.cpp
+* @author	: Liv
+* @email		: 1319923129@qq.com
+* @version	: 1.0
+* @date		: 2022/6/4	20:20
+****************************************************/
+
 bool DirectXHook::Init(DXTYPE Type, void** Original, void* Function)
 {
-	if (Type <= DXTYPE::NONE && Type > DXTYPE::D3D11)
+	if (Type <= DXTYPE::NONE && Type > DXTYPE::AUTO)
 		return false;
 	if (!this->CreateDrawWindow())
 		return false;
@@ -14,7 +23,9 @@ bool DirectXHook::Init(DXTYPE Type, void** Original, void* Function)
 		UnregisterClassA(this->WClass.lpszClassName, this->WClass.hInstance);
 	};
 
-	if (Type == DXTYPE::D3D9)
+	this->DirectXType = Type;
+
+	if (this->DirectXType == DXTYPE::D3D9)
 	{
 		void* PDirect3DCreate9;
 		LPDIRECT3DDEVICE9 Device;
@@ -69,7 +80,6 @@ bool DirectXHook::Init(DXTYPE Type, void** Original, void* Function)
 		// Release
 		PDirect3D9->Release();
 		Device->Release();
-		this->DirectXType = DXTYPE::D3D9;
 		ShutDownWindow();
 		
 		this->PTarget = reinterpret_cast<LPVOID>(this->MethodsTable[42]);
@@ -83,7 +93,7 @@ bool DirectXHook::Init(DXTYPE Type, void** Original, void* Function)
 
 		return false;
 	}
-	else if (Type == DXTYPE::D3D11)
+	else if (this->DirectXType == DXTYPE::D3D11)
 	{
 		void* D3D11CreateDeviceAndSwapChain;
 		D3D_FEATURE_LEVEL FeatureLevel;
